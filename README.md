@@ -71,16 +71,21 @@ Imm(r1,r2,4) Imm + r1 + r2 x 4, 作为地址.
  
 #### 基本跳转状态码
 ##### 概念
-CF: Carry Flag. 判断最近的一条指令执行结果是否产生进位
-ZF：Zero Flag. 判断最近的一条指令的结果是否为零
-SF: Sign Flag. 判断最近的一条指令执行的结果是否为复数
-OF: Overflow Flag. 判断最近一条指令执行的结果是否产生符号位扩展(实际上就是有符号的产生进位)
+| CF:  | Carry Flag. 判断最近的一条指令执行结果是否产生进位                                      |
+| ZF： | Zero Flag. 判断最近的一条指令的结果是否为零                                             |
+| SF:  | Sign Flag. 判断最近的一条指令执行的结果是否为复数                                       |
+| OF:  | Overflow Flag. 判断最近一条指令执行的结果是否产生符号位扩展(实际上就是有符号的产生进位) |
 ##### 举例说明
 已C语言中， t = a+b (a,b,t 都为整数)为例。
+
 CF 为 1: unsigned t < unsigned a (解释：因为a,b,t 为无符号数， a+b = t , 所以 a 肯定小于 t，如果不是，则肯定产生进位， cf 为 1)
+
 ZF 为 1: t == 0
+
 SF 为 1: t < 0
+
 OF 为 1: (a < 0 == b < 0) && ( t < 0 != a < 0) （解释：前面的表达式的意思是，a 与 b的符号位相同，但是 t 与 a 的符号位不同。这个只有一个原因， a+b 溢出，产生进位)
+
 
 
 #### 根据跳转状态码进行跳转
@@ -92,42 +97,44 @@ OF 为 1: (a < 0 == b < 0) && ( t < 0 != a < 0) （解释：前面的表达式�
 6. ja/jae: 上一条执行指令，是否符合大于/大于等于(有符号位)
 7. jb/jbe: 上一条执行指令，是否符合小于/小于等于(有符号位)
 ### GDB的指令
-quit： 退出
-run: 开始程序
-kill: 停止程序
 
-break: 断点
-break functionname： 在functionname 处打断点
-break *0x111111： 在 0x111111 处打断点
-delete 1： 删除 1号断点
-delete： 删除所有断点
-
-stepi： 单步调试（汇编级）
-stepi 4： 单步调试4次
-nexti： 程序级别下一条指令
-continue： 继续执行
-finish： 运行直到程序返回
-
-disas： 反汇编当前函数
-disas functionname： 反汇编functionname函数
-disas 0x11111111： 反汇编0x11111111的函数
-disas 0x11111111， 0x22222222： 反汇编两个地址范围的函数
-print /x $rip: 十六进制打印程序计数器
-
-print $rax: 打印$rax寄存器的内容
-print /x $rax: 十六进制打印$rax的内容
-print /t $rax: 二进制形式打印 $rax 的内容
-print 0x100：打印0x100的十进制
-print /x 555: 16进制打印 555
-print /x ($rsp+8) 十六进制打印 $rsp+8 地址的内容
-print *(long *) 0x11111111: long 整型形式打印 0x11111111 地址的内容
-print *(long *) ($rsp + 8): long 整形形式打印 $rsp +8 地址的内容
-x/2g 0x11111111: 输出从 0x11111111地址 开始 2 word 长度的内容
-x/20b functioname: 输出从 functionname 地址开始的 20 byte 的内容
-
-info frame: 当前栈帧的信息
-info registers: 当前寄存器信息
-help: 帮助
+| 命令                          | 功能                                          |
+| quit                          | 退出                                          |
+| run                           | 开始程序                                      |
+| kill                          | 停止程序                                      |
+|                               |                                               |
+| break                         | 断点                                          |
+| break functionname            | 在functionname 处打断点                       |
+| break *0x111111               | 在 0x111111 处打断点                          |
+| delete 1                      | 删除 1号断点                                  |
+| delete                        | 删除所有断点                                  |
+|                               |                                               |
+| stepi                         | 单步调试（汇编级）                            |
+| stepi 4                       | 单步调试4次                                   |
+| nexti                         | 程序级别下一条指令                            |
+| continue                      | 继续执行                                      |
+| finish                        | 运行直到程序返回                              |
+|                               |                                               |
+| disas                         | 反汇编当前函数                                |
+| disas functionname            | 反汇编functionname函数                        |
+| disas 0x11111111              | 反汇编0x11111111的函数                        |
+| disas 0x11111111， 0x22222222 | 反汇编两个地址范围的函数                      |
+| print /x $rip                 | 十六进制打印程序计数器                        |
+|                               |                                               |
+| print $rax                    | 打印$rax寄存器的内容                          |
+| print /x $rax                 | 十六进制打印$rax的内容                        |
+| print /t $rax                 | 二进制形式打印 $rax 的内容                    |
+| print 0x100                   | 打印0x100的十进制                             |
+| print /x 555                  | 16进制打印 555                                |
+| print /x ($rsp+8)             | 十六进制打印 $rsp+8 地址的内容                |
+| print *(long *) 0x11111111    | long 整型形式打印 0x11111111 地址的内容       |
+| print *(long *) ($rsp + 8)    | long 整形形式打印 $rsp +8 地址的内容          |
+| x/2g 0x11111111               | 输出从 0x11111111地址 开始 2 word 长度的内容  |
+| x/20b functioname             | 输出从 functionname 地址开始的 20 byte 的内容 |
+|                               |                                               |
+| info frame                    | 当前栈帧的信息                                |
+| info registers                | 当前寄存器信息                                |
+| help                          | 帮助                                          |
 
 ## 破解基本思路
 1. 既然是 c 程序，必然会有一个 main 函数，我们可以通过这个地方入手，先通过 gdb 在 main 函数处打断点。
