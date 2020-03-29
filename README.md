@@ -30,6 +30,20 @@
 ### 基本汇编指令
 #### 数据搬迁
 mov: 数据搬迁指令
+`mov s, d` move d to s
+`movb` move byte
+`movw` move word
+`movl` move long
+`movq` move quad word
+
+leaq: Load Effective Address
+`leaq s,d`  move &d to s
+
+inc: increment
+dec: decrement
+neg: negate
+not: complement
+
 #### 寻址
 ##### 概念
 | 符号         | 作用                                       |
@@ -165,6 +179,7 @@ OF 为 1: (a < 0 == b < 0) && ( t < 0 != a < 0) （解释：前面的表达式�
 11. x /d $registers: 显示寄存器所执行的内容
 
 ### 开始实验二
+
 
 
 # 以下为 Binary Bomb 的原文
