@@ -179,7 +179,8 @@ OF 为 1: (a < 0 == b < 0) && ( t < 0 != a < 0) （解释：前面的表达式�
 10. info registers: 展示各个寄存器的状态
 11. x /d $registers: 显示寄存器所执行的内容
 
-### 开始实验二
+### 实验二 以及其他关卡
+![bilibilinaglezhang](https://github.com/NagleZhang/NagleZhang/blob/main/images/bilibilinagle.jpg)
 
 
 
