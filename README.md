@@ -1,5 +1,5 @@
 # 二进制炸弹实验
-https://github.com/zhangnianlin/Binary-Bomb
+https://github.com/NagleZhang/Binary-Bomb
 ## 实验简要介绍
 该实验是书籍深入理解计算机操作系统中可以说是最有趣的实验之一，主要是使用 gdb，来拆解二进制(或者说程序)的一个文件，了解其运行逻辑。我们对这个程序的了解有：
 1. 有六个关卡，分别是 phase_1 - phase_6(不常规，应该从0开始的)
